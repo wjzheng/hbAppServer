@@ -18,6 +18,7 @@ AV.init({
   appKey: process.env.LEANCLOUD_APP_KEY || 'eDD28ddQiqUzF53Fl198PXQb',
   masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || 'KSKQidkuq1EwSnVEUH4ipJKV'
 });
+app.use(AV.koa());
 var viewRoot = path.join(__dirname, 'www');
 app.viewRoot = viewRoot;
 //EJS模版引擎的配置
@@ -38,6 +39,7 @@ app.use(session({
 app.use(bodyParser());
 app.use(json());
 app.use(cors());
+
 app.use(appRouter);
 
 //处理页面未找到异常
@@ -53,5 +55,5 @@ app.use(function*(next) {
 app.on('error', function (err) {
   debug(err);
 });
-module.exports = app;
+app.listen(process.env.LEANCLOUD_APP_PORT);
 
