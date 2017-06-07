@@ -30,7 +30,7 @@ router.get('/leancloud', function*() {
 router.post('/auth', function*() {
   var loginId = this.request.body.loginId;
   var password = this.request.body.password;
-  var flag = loginId === '18016052872' && password === '111111';
+  var flag = loginId.length === 11 && password === '111111';
   debug(`doLogin,loginId:${loginId} password:${password}`);
   //将loginID保存到session中
   if (flag) {
