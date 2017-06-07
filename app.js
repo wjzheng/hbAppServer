@@ -11,7 +11,14 @@ var app = require('koa')()
   , send = require('koa-send')
   , appRouter = require('./router')
   , EJSRender = require('koa-ejs')
-  , debug = require('debug')('react:app');
+  , debug = require('debug')('react:app')
+  , AV = require('leanengine');
+AV.init({
+  appId: process.env.LEANCLOUD_APP_ID,
+  appKey: process.env.LEANCLOUD_APP_KEY,
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
+});
+app.use(AV.koa());
 var viewRoot = path.join(__dirname, 'www');
 app.viewRoot = viewRoot;
 //EJS模版引擎的配置
@@ -55,5 +62,5 @@ app.use(function*(next) {
 app.on('error', function (err) {
   debug(err);
 });
-module.exports = app;
+app.listen(process.env.LEANCLOUD_APP_PORT || '8080');
 
