@@ -1,0 +1,26 @@
+{
+  "name": "hb-app-server",
+  "version": "1.0.0",
+  "description": "hb react native app server for leancloud",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjzheng/hbAppServer.git"
+  },
+  "keywords": [
+    "hb",
+    "react",
+    "native",
+    "leancloud",
+    "server"
+  ],
+  "author": "kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wjzheng/hbAppServer/issues"
+  },
+  "homepage": "https://github.com/wjzheng/hbAppServer#readme"
+}
