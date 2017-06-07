@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lean Cloud</title>
+  <script src="//cdn1.lncld.net/static/js/2.4.0/av-min.js"></script>
+</head>
+<body>
+<script>
+  AV.init({
+    appId: 'G1ooxgUmbxYegIkn1oF5cN71-gzGzoHsz',
+    appKey: 'eDD28ddQiqUzF53Fl198PXQb'
+  });
+  var user = new AV.User();
+  user.setUsername('kim2');
+  user.setPassword('111111');
+  user.setEmail('zhengwenjin@touker.com');
+  user.setMobilePhoneNumber('18016052872')
+  user.signUp();
+  AV.User.logIn('wangxiao', '123456789-').then(function (loginedUser) {
+
+  },function (error) {
+    alert(JSON.stringify(error));
+  })
+//  var query = new AV.Query('Product');
+//  query.include('owner');
+//  query.descending('createdAt');
+//  query.equalTo('owner', AV.User.current());
+//  query.find().then(function (products) {
+//    console.log(products[0].get('owner').get('username'))
+//  }).catch(function(error) {
+//    alert(JSON.stringify(error));
+//  });
+</script>
+</body>
+</html>
