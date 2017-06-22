@@ -36,10 +36,16 @@ router.post('/auth', function*() {
   if (flag) {
     this.session.logonId = loginId;
   }
-  this.body = {
-    code: 0,
-    isSuc: flag
-  }
+  var result = yield new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      if (loginId === '110') {
+        reject({isSuc: false, code: 0})
+      } else {
+        resolve({isSuc: flag, code: 0})
+      }
+    }, 500)
+  });
+  this.body = result;
 });
 
 /**
