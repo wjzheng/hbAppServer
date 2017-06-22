@@ -38,8 +38,12 @@ router.post('/auth', function*() {
   }
   var result = yield new Promise(function (resolve, reject) {
     setTimeout(function () {
-      resolve({isSuc: flag, code: 0})
-    }, 1000)
+      if (loginId === '110') {
+        reject({isSuc: false, code: 0})
+      } else {
+        resolve({isSuc: flag, code: 0})
+      }
+    }, 2000)
   });
   this.body = result;
 });
