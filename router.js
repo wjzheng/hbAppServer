@@ -10,9 +10,12 @@ var debug = require('debug')('react:router');
  * 通用接口
  */
 router.all('/common', function*() {
+  let reqBody = this.request.body;
+  debug(reqBody);
   var result = yield new Promise(function (resolve, reject) {
     setTimeout(function () {
-      resolve({isSuc: true})
+      let uuid = require('node-uuid');
+      resolve({isSuc: true, data: {id: uuid.v1()}})
     }, 500)
   });
   this.body = result;
