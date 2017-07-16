@@ -46,7 +46,7 @@ router.post('/auth', function*() {
       } else {
         resolve({isSuc: flag, code: 0})
       }
-    }, 2000)
+    }, 200)
   });
   this.body = result;
 });
