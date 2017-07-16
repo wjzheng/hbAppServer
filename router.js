@@ -3,6 +3,7 @@
  */
 
 var Router = require('koa-router');
+let uuid = require('node-uuid');
 var router = new Router().prefix('/api');
 var debug = require('debug')('react:router');
 
@@ -14,7 +15,6 @@ router.all('/common', function*() {
   debug(reqBody);
   var result = yield new Promise(function (resolve, reject) {
     setTimeout(function () {
-      let uuid = require('node-uuid');
       resolve({isSuc: true, data: {id: uuid.v1()}})
     }, 500)
   });
