@@ -3,6 +3,7 @@
  */
 
 var Router = require('koa-router');
+let uuid = require('node-uuid');
 var router = new Router().prefix('/api');
 var debug = require('debug')('react:router');
 
@@ -10,9 +11,11 @@ var debug = require('debug')('react:router');
  * 通用接口
  */
 router.all('/common', function*() {
+  let reqBody = this.request.body;
+  debug(reqBody);
   var result = yield new Promise(function (resolve, reject) {
     setTimeout(function () {
-      resolve({isSuc: true})
+      resolve({isSuc: true, data: {id: uuid.v1()}})
     }, 500)
   });
   console.log(this.request.body);
