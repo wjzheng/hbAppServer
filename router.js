@@ -15,11 +15,18 @@ router.all('/common', function*() {
       resolve({isSuc: true})
     }, 500)
   });
+  console.log(this.request.body);
   this.body = result;
 });
 
 router.get('/leancloud', function*() {
   yield this.render('leancloud', {
+    layout: false
+  })
+});
+
+router.get('/native', function*() {
+  yield this.render('native', {
     layout: false
   })
 });

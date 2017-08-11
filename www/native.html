@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="shortcut icon" type="image/x-icon" href="//static.touker.com/hbec/favicon.ico"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>原生测试页面</title>
+  <script>
+    //APP端配置参数
+    var conf = {
+      navbar: {
+        color: 'red'
+      }
+    };
+
+    /**
+     * 初始化App配置
+     */
+    function initAppConf(conf) {
+      window.__REACT_WEB_VIEW_BRIDGE.postMessage(JSON.stringify({
+        action: 'config',
+        params: conf
+      }));
+    }
+
+    initAppConf(conf);
+
+    /**
+     * 调用原生路由
+     */
+    function callAppRouter(routerName, params, callback) {
+      var cbName = 'CB_' + Date.now() + '_' + Math.ceil(Math.random() * 10);
+      window[cbName] = function (err, result) {
+        callback(err, result);
+        //回调成功之后删除挂载到window上的临时函数
+        delete window[cbName];
+      };
+      window.__REACT_WEB_VIEW_BRIDGE.postMessage(JSON.stringify({
+        action: 'callNative',
+        routerName: routerName,
+        params: params,
+        callback: cbName
+      }))
+    }
+  </script>
+</head>
+<body>
+<button onclick="callAppRouter('uploadPhoto',{hello:'hello'}, function(){alert('native callback')})">打开native页面</button>
+</body>
+</html>
